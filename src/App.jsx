@@ -10,7 +10,6 @@ function App() {
   const [matched, setMatched] = useState(0);
   const [win, setWin] = useState(false);
   const [time, setTime] = useState(0);
-
   const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
@@ -27,10 +26,15 @@ function App() {
   }
 
   function handleFlipp(card) {
+    
     setGameStarted(true);
+    
     if (flipped.length >= 2) return;
+    if (card.isFlipped || card.isMatched) return;
+    
     const { id, name } = card;
     setFlipped((prev) => [...prev, { id, name }]);
+
     setCardsSet((prev) =>
       prev.map((card) =>
         card.id === id ? { ...card, isFlipped: !card.isFlipped } : card
@@ -81,7 +85,6 @@ function App() {
   useEffect(() => {
     if (matched === cardsSet.length / 2) {
       setWin(true);
-
       setGameStarted(false);
       setTime(0);
     }

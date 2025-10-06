@@ -5,14 +5,30 @@
 }
 
 body {
-  height: 100vh;
-  width: 70vw;
+  background-color: #283845;
+}
+
+#root {
+  min-height: 90vh;
+  width: 60vw;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 5vh;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #87c38f;
 }
 
+h1,
+h5,
+p {
+  text-transform: uppercase;
+  color: #dda448;
+  padding: 1rem 0;
+  text-align: center;
+}
 main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -25,9 +41,51 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1vh;
   justify-content: center;
+  border-bottom: 2px double #dda448;
 }
 
 .card {
-  padding: 5vh;
+  padding: 3vh;
+  border: none;
+  border-radius: 6px;
+  background-color: #b8b08d;
+  cursor: pointer;
+}
+.matched {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.win-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2%;
+}
+.win-message p {
+  color: #bb342f;
+  font-size: 2rem;
+}
+
+.reset-btn {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  padding: 3%;
+  background-color: #b8b08d;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+}
+
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .card {
+    padding: 1vh;
+  }
 }

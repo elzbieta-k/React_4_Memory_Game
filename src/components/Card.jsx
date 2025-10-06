@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 export default function Card({ data: { card, handleFlipp } }) {
-  const { id, name, isFlipped, backside, frontside } = card;
+  const { id, name, isFlipped, isMatched, backside, frontside } = card;
 
   return (
     <button
-      className="card"
+      className={`card ${isMatched ? "matched" : ""}`}
       id={id}
       name={name}
       onClick={() => handleFlipp(card)}

@@ -4,22 +4,22 @@ export default function Header({ data }) {
   const minutes = Math.floor(time / 60);
 
   return (
+  
     <header>
       <h1>Welcome to a memory game!</h1>
-      <p>
-        {gameStarted
-          ? `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`
-          : "0:00"}
-      </p>
       <div>
         {win ? (
-          <div>
+          <div className="win-message">
             <p>Congratulations! You won</p>
-            <button onClick={resetGame}>Reset</button>
+            <button className="reset-btn" onClick={resetGame}>Reset</button>
           </div>
         ) : (
-          ""
-        )}{" "}
+          <p>
+            {gameStarted
+              ? `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`
+              : "Start your game by clicking a card. Good luck!"}
+          </p>
+        )}
       </div>
     </header>
   );
