@@ -29,6 +29,10 @@ p {
   padding: 1rem 0;
   text-align: center;
 }
+
+p {
+  font-size: 1.3rem;
+}
 main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -64,7 +68,7 @@ header {
   padding-bottom: 2%;
 }
 .win-message p {
-  color: #bb342f;
+  color: #df0f07;
   font-size: 2rem;
 }
 
@@ -80,6 +84,9 @@ header {
 }
 
 @media (max-width: 700px) {
+  #root {
+    width: 90vw;
+  }
   main {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);

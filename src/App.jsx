@@ -86,11 +86,12 @@ function App() {
     if (allMatched) {
       setWin(true);
       setGameStarted(false);
-      setTime(0);
+      // setTime(0);
     }
   }, [cardsSet]);
 
   function resetGame() {
+    setTime(0);
     setCardsSet(shuffleArray(cards));
     setWin(false);
   }
