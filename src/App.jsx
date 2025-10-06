@@ -12,10 +12,12 @@ function App() {
   const [time, setTime] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
 
+  //displaying random cards when website loads
   useEffect(() => {
     setCardsSet(shuffleArray(cards));
   }, []);
 
+  //Function that shuffles objects in data array
   function shuffleArray(array) {
     const shuffled = [...array]; // copy so we don’t mutate original
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -25,15 +27,21 @@ function App() {
     return shuffled;
   }
 
+  //Function to handle flipping the card
   function handleFlipp(card) {
     setGameStarted(true);
 
+    //when to cards are flipped, do nothing - wait until they are checked
     if (flipped.length >= 2) return;
+
+    //when the card is already flipped or matched - ignore the click
     if (card.isFlipped || card.isMatched) return;
 
+    //update flipped to true
     const { id, name } = card;
     setFlipped((prev) => [...prev, { id, name }]);
 
+    //update set of cards
     setCardsSet((prev) =>
       prev.map((card) =>
         card.id === id ? { ...card, isFlipped: !card.isFlipped } : card
@@ -41,6 +49,7 @@ function App() {
     );
   }
 
+  //when a card is flipped checking if two cards match
   useEffect(() => {
     if (flipped.length !== 2) return;
 
@@ -71,6 +80,7 @@ function App() {
     }
   }, [flipped]);
 
+  //start timer when gameStarted sets to true
   useEffect(() => {
     if (!gameStarted) return;
     const intervalId = setInterval(() => {
@@ -81,15 +91,16 @@ function App() {
     };
   }, [gameStarted]);
 
+  //checking if all cards are matched
   useEffect(() => {
     const allMatched = cardsSet.every((card) => card.isMatched);
     if (allMatched) {
       setWin(true);
       setGameStarted(false);
-      // setTime(0);
     }
   }, [cardsSet]);
 
+  //function that reset game
   function resetGame() {
     setTime(0);
     setCardsSet(shuffleArray(cards));
