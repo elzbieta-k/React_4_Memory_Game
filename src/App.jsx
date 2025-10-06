@@ -26,12 +26,11 @@ function App() {
   }
 
   function handleFlipp(card) {
-    
     setGameStarted(true);
-    
+
     if (flipped.length >= 2) return;
     if (card.isFlipped || card.isMatched) return;
-    
+
     const { id, name } = card;
     setFlipped((prev) => [...prev, { id, name }]);
 
@@ -83,12 +82,13 @@ function App() {
   }, [gameStarted]);
 
   useEffect(() => {
-    if (matched === cardsSet.length / 2) {
+    const allMatched = cardsSet.every((card) => card.isMatched);
+    if (allMatched) {
       setWin(true);
       setGameStarted(false);
       setTime(0);
     }
-  }, [matched]);
+  }, [cardsSet]);
 
   function resetGame() {
     setCardsSet(shuffleArray(cards));
